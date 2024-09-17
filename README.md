@@ -1,6 +1,24 @@
+# Vancouver Building Permit Response Time Analysis
+
+## Project Overview
+This project focuses on analyzing the time it takes for the Vancouver government to process and respond to building permit requests. The permits include construction, demolition, and modification. By leveraging AWS services such as S3, Glue, CloudWatch, EC2, and DataBrew, we are able to ingest, clean, analyze, and visualize the response times for different types of permits.
+
+__The main objective is to:__
+
+Calculate the average time taken for the government to respond to permit requests.
+Identify patterns in response times based on the type of work 'Addition / Alteration', 'New Building' 'Demolition / Deconstruction', 'Salvage and Abatement', 'Outdoor Uses (No Buildings Proposed)', 'Temporary Building / Structure'.
+Provide visual insights for better understanding of response time distribution and government efficiency.
+AWS Services Used.
+
 # Vancouver-Building-Permits-Processing-Analysis
 
-## Exploratory Data Analysis
+# Exploratory Data Analysis
+
+**Project Description:** _Exploratory Data Analysis for Vancouver Building Permits Processing Analysis_
+
+**Project Title:** _Exploratory Data Analysis for Vancouver-Building-Permits-Processing-Analysis_
+
+__Objective:__ 
 
 **Understand the structure and quality of the data:** Identify and correct potential problems in the data, such as missing values, duplicates or inconsistencies. This ensures that the data are reliable for further analysis.
 
@@ -12,26 +30,100 @@
 
 **Establish hypotheses:** From the patterns and relationships observed, formulate hypotheses about factors influencing delay times.
 
+# Dataset: 
 
-PermitNumber: A unique identification number assigned to each permit issued.
-PermitNumberCreatedDate: The date on which the permit number was created.
-IssueDate: The date the permit was officially issued.
-PermitElapsedDays: Number of days that elapsed between the application and permit issuance.
-ProjectValue: Estimated monetary value of the project related to the permit.
-TypeOfWork: Type of work to be performed (e.g., construction, demolition, modification).
-Address: Address of the location where the project will be performed.
-ProjectDescription: Brief description of the project for which the permit is being requested.
-PermitCategory: Permit category according to the type of project.
-Applicant: Name of the applicant who managed the permit.
-ApplicantAddress: Applicant's address.
-PropertyUse: Intended use of the property (residential, commercial, etc.).
-SpecificUseCategory: Specific property use category (more detailed than PropertyUse).
-Building Contractor: Name of the contractor performing the work.
-BuildingContractorAddress: Contractor's address.
-IssueYear: The year in which the permit was issued.
-GeoLocalArea: Local geographic area associated with the project.
-Geom: Geospatial geometry of the project site.
-YearMonth: Year and month in which the permit was issued.
-geo_point_2d: Geographic coordinates (latitude and longitude) of the project site.
++ **PermitNumber:** A unique identification number assigned to each permit issued.
++ **PermitNumberCreatedDate:** The date on which the permit number was created.
++ **IssueDate:** The date the permit was officially issued.
++ **PermitElapsedDays:** Number of days that elapsed between the application and permit issuance.
++ **ProjectValue:** Estimated monetary value of the project related to the permit.
++ **TypeOfWork:** Type of work to be performed (e.g., construction, demolition, modification).
++ **Address:** Address of the location where the project will be performed.
++ **ProjectDescription:** Brief description of the project for which the permit is being requested.
++ **PermitCategory:** Permit category according to the type of project.
++ **Applicant:** Name of the applicant who managed the permit.
++ **ApplicantAddress:** Applicant's address.
++ **PropertyUse:** Intended use of the property (residential, commercial, etc.).
++ **SpecificUseCategory:** Specific property use category (more detailed than PropertyUse).
++ **Building Contractor:** Name of the contractor performing the work.
++ **BuildingContractorAddress:** Contractor's address.
++ **IssueYear:** The year in which the permit was issued.
++ **GeoLocalArea:** Local geographic area associated with the project.
++ **Geom:** Geospatial geometry of the project site.
++ **YearMonth:** Year and month in which the permit was issued.
++ **geo_point_2d:** Geographic coordinates (latitude and longitude) of the project site.
+
+## Data Collection and Preparation:
+
+
+The following AWS services were utilized to manage, process, and analyze the data:
+
+S3: Used for storing the building permits dataset and results.
+Glue: Responsible for ETL (Extract, Transform, Load) processes to clean and prepare the data.
+CloudWatch: Monitored logs and tracked data pipeline performance.
+EC2: Hosted the computation environment for analysis.
+DataBrew: Automated data cleaning and transformation tasks, allowing easy preparation of datasets.
+Screenshots:
+
+Screenshot of S3 bucket setup.
+Screenshot of Glue job transformation.
+Screenshot of DataBrew recipe configuration.
+Data Source
+The dataset was sourced from the City of Vancouver Open Data Portal, which provides publicly available information on building permits issued by the city.
+
+Permit Types: Construction, demolition, modification, etc.
+Attributes: Permit number, issue date, project description, type of work, project value, response time, etc.
+Exploratory Data Analysis (EDA)
+Data Overview
+
+Inspect the structure of the dataset (columns, data types, missing values).
+Check distribution of permits by type of work and by year.
+Summary Statistics
+
+Calculate basic statistics (mean, median, mode) for the response time, project value, etc.
+Visualize distributions of response time to understand the overall trend.
+Analysis by Type of Work
+
+Group permits by type (construction, demolition, modification) and analyze their respective response times.
+Compare the average response time for each category.
+Time Series Analysis
+
+Plot the permit issuance dates to identify trends over time.
+Identify any seasonality or periods where response times fluctuate significantly.
+Screenshots:
+
+Response time distribution graph.
+Permit types breakdown by year.
+
+
+
+
+
+
+
+
+
+
+o	Load the Titanic dataset using Python libraries like Pandas.
+o	Perform initial data cleaning, which includes handling missing values, correcting data types, and renaming columns for clarity.
+2-	Descriptive Statistics:
+o	Generate summary statistics (mean, median, mode) for numerical features (like Age and Fare) and frequency distributions for categorical features (like Pclass and Sex).
+3-	Data Visualization:
+o	Create visualizations to illustrate key insights:
+	Histograms and Boxplots: Analyze the distribution of continuous variables like Age and Fare.
+	Bar Charts: Showcase survival rates across different categories (e.g., Sex, Pclass).
+	Heatmaps: Visualize correlations between numerical variables.
+4-	Survival Analysis:
+o	Compare survival rates:
+	By gender: Determine if there is a significant difference in survival rates between male and female passengers.
+	By class: Analyze how passenger class affected survival chances.
+	By age group: Create age bins to assess survival across different age demographics.
+5-	Insights and Findings:
+o	Summarize the findings based on data visualizations and statistical analyses, highlighting notable trends and patterns (e.g., women and children had higher survival rates, first-class passengers had a significant survival advantage).
+6-	Conclusion:
+o	Discuss the implications of the findings and suggest further analyses or data-driven decisions that could be explored, such as building predictive models to classify survival based on passenger features.
+
+
+
 
 
