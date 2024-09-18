@@ -37,6 +37,9 @@ The dataset was sourced from the City of Vancouver Open Data Portal, which provi
 Permit Types: 'Addition / Alteration', 'New Building' 'Demolition / Deconstruction', 'Salvage and Abatement', 'Outdoor Uses (No Buildings Proposed)', 'Temporary Building / Structure'.
 Attributes: Permit number, issue date, project description, type of work, project value, response time, etc.
 
+During the Data Collection phase of my project analyzing building permit response times in the City of Vancouver, I observed that the dataset was of exceptionally high quality. The data was free of duplicates, missing values, and formatting errors, which allowed for a smooth transition into the analysis phase without extensive data cleaning. This high data integrity ensured that the insights derived were based on accurate and reliable information.
+
+
 # Dataset: 
 
 + **PermitNumber:** A unique identification number assigned to each permit issued.
@@ -61,14 +64,30 @@ Attributes: Permit number, issue date, project description, type of work, projec
 + **geo_point_2d:** Geographic coordinates (latitude and longitude) of the project site.
 
 
-
 The following AWS services were utilized to manage, process, and analyze the data:
 
 **S3:**
 Stores raw and processed data. Used to store both original and transformed data.
 
+![bucket](https://github.com/user-attachments/assets/8d110700-67f4-4c1c-b3fc-8f2a4b2e6f93)
+
+
+
+
 **AWS Glue DataBrew:**
 Visual tool for preparing and exploring data. It is ideal for exploratory analysis without writing code.
+
+
+
+![dataset1](https://github.com/user-attachments/assets/2cdea9eb-9556-4a75-a724-ad7dd23f1f13)
+![dataset2](https://github.com/user-attachments/assets/903b4197-d067-47a9-bbf3-d607a4390a7c)
+![DataQuality](https://github.com/user-attachments/assets/8edd7ee8-24be-4ab7-bcd2-6fcb384b77b2)
+
+
+## Descriptive Statistics:
+
+
+
 
 **Amazon Athena:**
 Allows you to run SQL queries directly on data stored in Amazon S3, facilitating exploratory analysis of large volumes of data.
@@ -78,10 +97,6 @@ Although primarily a tool for machine learning, you can also use SageMaker for a
 
 **Amazon QuickSight:**
 BI tool for creating dashboards and interactive visualizations.
-
-## Descriptive Statistics:
-
-During the Data Collection phase of my project analyzing building permit response times in the City of Vancouver, I observed that the dataset was of exceptionally high quality. The data was free of duplicates, missing values, and formatting errors, which allowed for a smooth transition into the analysis phase without extensive data cleaning. This high data integrity ensured that the insights derived were based on accurate and reliable information.
 
 
 
