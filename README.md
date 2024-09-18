@@ -30,6 +30,13 @@ __Objective:__
 
 **Establish hypotheses:** From the patterns and relationships observed, formulate hypotheses about factors influencing delay times.
 
+## Data Collection and Preparation:
+
+The dataset was sourced from the City of Vancouver Open Data Portal, which provides publicly available information on building permits issued by the city.
+
+Permit Types: 'Addition / Alteration', 'New Building' 'Demolition / Deconstruction', 'Salvage and Abatement', 'Outdoor Uses (No Buildings Proposed)', 'Temporary Building / Structure'.
+Attributes: Permit number, issue date, project description, type of work, project value, response time, etc.
+
 # Dataset: 
 
 + **PermitNumber:** A unique identification number assigned to each permit issued.
@@ -53,7 +60,6 @@ __Objective:__
 + **YearMonth:** Year and month in which the permit was issued.
 + **geo_point_2d:** Geographic coordinates (latitude and longitude) of the project site.
 
-## Data Collection and Preparation:
 
 
 The following AWS services were utilized to manage, process, and analyze the data:
@@ -73,20 +79,12 @@ Although primarily a tool for machine learning, you can also use SageMaker for a
 **Amazon QuickSight:**
 BI tool for creating dashboards and interactive visualizations.
 
-[AWS_Academy_Graduate___AWS_Academy_Cloud_Foundations_Badge20240917-8-sh7a3z.pdf](https://github.com/user-attachments/files/17036584/AWS_Academy_Graduate___AWS_Academy_Cloud_Foundations_Badge20240917-8-sh7a3z.pdf)
+## Descriptive Statistics:
 
-Screenshots:
+During the Data Collection phase of my project analyzing building permit response times in the City of Vancouver, I observed that the dataset was of exceptionally high quality. The data was free of duplicates, missing values, and formatting errors, which allowed for a smooth transition into the analysis phase without extensive data cleaning. This high data integrity ensured that the insights derived were based on accurate and reliable information.
 
-Screenshot of S3 bucket setup.
-Screenshot of Glue job transformation.
-Screenshot of DataBrew recipe configuration.
-Data Source
-The dataset was sourced from the City of Vancouver Open Data Portal, which provides publicly available information on building permits issued by the city.
 
-Permit Types: Construction, demolition, modification, etc.
-Attributes: Permit number, issue date, project description, type of work, project value, response time, etc.
-Exploratory Data Analysis (EDA)
-Data Overview
+
 
 Inspect the structure of the dataset (columns, data types, missing values).
 Check distribution of permits by type of work and by year.
