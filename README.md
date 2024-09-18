@@ -34,8 +34,8 @@ __Objective:__
 
 The dataset was sourced from the City of Vancouver Open Data Portal, which provides publicly available information on building permits issued by the city.
 
-Permit Types: 'Addition / Alteration', 'New Building' 'Demolition / Deconstruction', 'Salvage and Abatement', 'Outdoor Uses (No Buildings Proposed)', 'Temporary Building / Structure'.
-Attributes: Permit number, issue date, project description, type of work, project value, response time, etc.
+__Permit Types:__ 'Addition / Alteration', 'New Building' 'Demolition / Deconstruction', 'Salvage and Abatement', 'Outdoor Uses (No Buildings Proposed)', 'Temporary Building / Structure'.
+__Attributes:__ Permit number, issue date, project description, type of work, project value, response time, etc.
 
 During the Data Collection phase of my project analyzing building permit response times in the City of Vancouver, I observed that the dataset was of exceptionally high quality. The data was free of duplicates, missing values, and formatting errors, which allowed for a smooth transition into the analysis phase without extensive data cleaning. This high data integrity ensured that the insights derived were based on accurate and reliable information.
 
@@ -92,61 +92,249 @@ Visual tool for preparing and exploring data. It is ideal for exploratory analys
 **Amazon Athena:**
 Allows you to run SQL queries directly on data stored in Amazon S3, facilitating exploratory analysis of large volumes of data.
 
-**Amazon SageMaker:**
-Although primarily a tool for machine learning, you can also use SageMaker for advanced exploratory analysis using notebooks and visualizations.
+_Data Management:_ The code allows the creation, insertion and retrieval of data, which is essential for information management in the project. The dataset was imported with the selected columns after debugging the columns that we will not use; this process was done with the AWS Databrew service, creating a recipe that automates this task for the different years to be analyzed.
+Automation: SQL queries can be automated to perform repetitive tasks, such as updating records or generating reports.
+Scalability: Using AWS Databrew, the data columns used for the project data analysis Vancouver-Building-Permits-Processing-Analysis can be easily scaled to handle large volumes of data without compromising performance.
+
+![athena0](https://github.com/user-attachments/assets/757216ed-b8f6-4040-892b-288f632a6977)
+
+Using SQL, we have imported the dataset containing three key columns. These columns will allow us to analyze the average number of days the Vancouver government takes to respond to requests, categorized by the type of work to perform.
+
+![athena1](https://github.com/user-attachments/assets/b3d1d568-b0cb-4394-9f5e-e93a4e616fe1)
+
+A new column called AVGDays has been created to calculate the average number of days the Vancouver government takes to respond to requests, categorized by the type of work performed. This calculation has generated six unique pieces of data.
+
+Data Description
+New Building: 228.94 days
+Demolition / Deconstruction: 226.96 days
+Salvage and Abatement: 69.33 days
+Addition / Alteration: 76.92 days
+Outdoor Uses (No Buildings Proposed): 275.75 days
+Temporary Building / Structure: 34.41 days
+
+![athena2](https://github.com/user-attachments/assets/94b24e90-2db9-4750-af21-471d0b2c63b3)
+
+
+## Data Visualization:
 
 **Amazon QuickSight:**
 BI tool for creating dashboards and interactive visualizations.
+In this case I used python made graphs that represent the average and tendence of response by license of construction and modification by type of work
+
+
+# Bar Chart
+
+
+The graph titled “Average Permit Response Time by Type of Work” shows the average time in days it takes the Vancouver government to respond to permit applications, categorized by type of work. Here is the interpretation of the data:
+
+New Building: Approximately 229 days.
+Demolition / Deconstruction: Approximately 227 days.
+Salvage and Abatement: Approximately 69 days.
+Addition / Alteration: Approximately 77 days.
+Outdoor Uses (No Buildings Proposed): Approximately 276 days.
+Temporary Building / Structure: Approximately 34 days.
+Comments
+Longest Response Time: Applications for Outdoor Uses (No Buildings Proposed) have the longest average response time at approximately 276 days.
+Shortest Response Time: Applications for Temporary Building / Structure have the shortest average response time, approximately 34 days.
+Intermediate Times: The other job types have response times ranging from 69 to 229 days.
+
+
+```plt.figure(figsize=(10,6))
+averages_by_type.plot(kind='bar', color='skyblue')
+
+# add tittle and tags
+plt.title('Average Permit Response Time by Type of Work', fontsize=16)
+plt.xlabel('Type of Work', fontsize=12)
+plt.ylabel('Average Days', fontsize=12)
+
+plt.xticks(rotation=45, ha='right')
+
+# show the graph
+plt.tight_layout()
+plt.show()
+```
+![barchart1](https://github.com/user-attachments/assets/26891f6d-f2b8-4dd3-8f50-183e055cd0d8)
+
+
+# Box Plot
+
+```plt.figure(figsize=(10,6))
+sns.boxplot(x='TypeOfWork', y='PermitElapsedDays', data=issuedbuildingpermits_2024, palette='Set2')
+
+plt.title('Distribution of Permit Response Time by Type of Work', fontsize=16)
+plt.xlabel('Type of Work', fontsize=12)
+plt.ylabel('Permit Elapsed Days', fontsize=12)
+
+plt.xticks(rotation=45, ha='right')
+
+plt.tight_layout()
+plt.show()
+```
+
+![boxplot](https://github.com/user-attachments/assets/b70b0e7c-250e-4904-ade4-d098c4d1f940)
+
+
+__New Building:__
+Median: Approximately 500 days.
+Interquartile Range: Between 250 and 1000 days.
+Outliers: Some points exceed 1500 days.
+
+__Addition / Alteration:__
+Median: Approximately 250 days.
+Interquartile Range: Between 100 and 500 days.
+Outliers: Some points exceed 1000 days.
+
+__Demolition / Deconstruction:__
+Median: Approximately 750 days.
+Interquartile Range: Between 500 and 1000 days.
+Outliers: Some points exceed 1500 days.
+
+__Salvage and Abatement:__
+Median: Approximately 250 days.
+Interquartile Range: Between 100 and 500 days.
+Outliers: Some points exceed 1000 days.
+
+__Outdoor Uses (No Buildings Proposed):__
+Median: Approximately 1000 days.
+Interquartile Range: Between 750 and 1500 days.
+Outliers: Some points exceed 1750 days.
+
+__Temporary Building / Structure:__
+Median: Approximately 100 days.
+Interquartile Range: Between 50 and 250 days.
+Outliers: Some points exceed 500 days.
+
+
+**Conclusions:**
+
+Highest Variability: Response times for Outdoor Uses (No Buildings Proposed) show the highest variability and the most extended times.
+Lowest Variability: Temporary Buildings / Structures have the lowest variability and the shortest response times.
+Outliers: All work types have significant outliers, indicating that, in some cases, response times can be exceptionally long.
+
+
+# Histogram
+
+
+```plt.figure(figsize=(10,6))
+issuedbuildingpermits_2024['PermitElapsedDays'].hist(bins=30, color='skyblue', edgecolor='black')
+
+plt.title('Distribution of Permit Response Times', fontsize=16)
+plt.xlabel('Permit Elapsed Days', fontsize=12)
+plt.ylabel('Frequency', fontsize=12)
+
+plt.tight_layout()
+plt.show()
+```
+
+![histogram](https://github.com/user-attachments/assets/40cd8e2f-a09f-46c5-bd2c-33b9f23a5878)
 
 
 
+**The “Distribution of Permit Response Times” graph shows the frequency of permit response times, measured in elapsed days. Here is the interpretation of the data:**
 
-Inspect the structure of the dataset (columns, data types, missing values).
-Check distribution of permits by type of work and by year.
-Summary Statistics
+__High Frequency in Short Times:__
 
-Calculate basic statistics (mean, median, mode) for the response time, project value, etc.
-Visualize distributions of response time to understand the overall trend.
-Analysis by Type of Work
+The highest bar is in the interval closest to 0 days, indicating that most permits have a short response time after submission.
 
-Group permits by type (construction, demolition, modification) and analyze their respective response times.
-Compare the average response time for each category.
-Time Series Analysis
+__Decreasing Frequency:__
 
-Plot the permit issuance dates to identify trends over time.
-Identify any seasonality or periods where response times fluctuate significantly.
-Screenshots:
+The frequency decreases as the elapsed days increase, showing that fewer permits take longer to receive a response.
 
-Response time distribution graph.
-Permit types breakdown by year.
+__Range of Days:__
 
+The x-axis shows elapsed days from 0 to 2000 days, while the y-axis shows frequency, which appears to reach approximately 1400.
+
+__Conclusions__
+
+__Efficiency:__ Most permits are responded to quickly, suggesting an efficient process.
+__Variability:__ Although most permits have short response times, there is significant variability, with some permits taking much longer.
 
 
+# Time-to-Approval Analysis:
 
 
+__High Frequency in Short Times:__
+
+The highest bar is in the range closest to 0 days, indicating that most permits have a short turnaround time after submission.
+
+__Decreasing Frequency:__
+
+The frequency decreases as the elapsed days increase, showing that fewer permits take longer to receive a response.
+
+__Range of Days:__
+
+The x-axis shows elapsed days from 0 to 2000 days, while the y-axis shows frequency, which appears to reach approximately 1400.
+
+__Conclusions__
+
+_Efficiency:_ Most permits are responded to quickly, suggesting an efficient process.
+_Variability:_ Although most permits have short response times, there is significant variability, with some permits taking much longer.
 
 
+## Insights and Findings:
 
+In analyzing turnaround times for building permits, several key columns have been identified that, when combined, can provide a more complete picture of the factors influencing these times. Insights and findings based on these columns are presented below:
 
+__PermitNumber:__
+Insight: Each permit has a unique identifier that allows each request to be tracked and analyzed individually.
+Findings: Allows identifying specific patterns in response times for different types of permits.
 
-o	Load the Titanic dataset using Python libraries like Pandas.
-o	Perform initial data cleaning, which includes handling missing values, correcting data types, and renaming columns for clarity.
-2-	Descriptive Statistics:
-o	Generate summary statistics (mean, median, mode) for numerical features (like Age and Fare) and frequency distributions for categorical features (like Pclass and Sex).
-3-	Data Visualization:
-o	Create visualizations to illustrate key insights:
-	Histograms and Boxplots: Analyze the distribution of continuous variables like Age and Fare.
-	Bar Charts: Showcase survival rates across different categories (e.g., Sex, Pclass).
-	Heatmaps: Visualize correlations between numerical variables.
-4-	Survival Analysis:
-o	Compare survival rates:
-	By gender: Determine if there is a significant difference in survival rates between male and female passengers.
-	By class: Analyze how passenger class affected survival chances.
-	By age group: Create age bins to assess survival across different age demographics.
-5-	Insights and Findings:
-o	Summarize the findings based on data visualizations and statistical analyses, highlighting notable trends and patterns (e.g., women and children had higher survival rates, first-class passengers had a significant survival advantage).
-6-	Conclusion:
-o	Discuss the implications of the findings and suggest further analyses or data-driven decisions that could be explored, such as building predictive models to classify survival based on passenger features.
+__PermitNumberCreatedDate and IssueDate:__
+Insight: These dates are crucial for calculating the total processing time for each permit.
+Finding: The difference between these dates, represented in PermitElapsedDays, directly measures response time.
+
+__PermitElapsedDays:__
+Insight: This column is critical to understanding the efficiency of the permit issuance process.
+Findings: Allows you to identify the permits that take the longest and analyze the possible causes of these delays.
+
+__ProjectValue:__
+Insight: Project value can influence priority and review time.
+Finding: Higher-value projects tend to have longer turnaround times due to complexity and the need for more detailed reviews.
+
+__TypeOfWork:__
+Insight: Different types of work may have different turnaround times.
+Finding: New construction jobs and demolitions tend to have longer response times than minor alterations.
+
+__Address and GeoLocalArea:__
+Insight: Geographic location can influence response times due to variations in workload and local regulations.
+Finding: Areas with higher construction activity may experience longer response times.
+
+__ProjectDescription and PermitCategory:__
+Insight: The project description and permit category provide additional context on the nature of the work.
+Findings: Allows for more accurate classification of permits and a better understanding of the factors affecting turnaround times.
+
+__Applicant and ApplicantAddress:__
+Insight: Applicant information may be relevant to identify patterns in response times.
+Findings: Frequent applicants or applicants with larger projects may have different response times.
+
+__PropertyUse and SpecificUseCategory:__
+Insight: The property's intended use may influence the priority and permit review time.
+Finding: Commercial and residential properties may have different response times.
+
+__BuildingContractor and BuildingContractorAddress:__
+Insight: Contractor information may be relevant to analyzing efficiency and permit management experience.
+Finding: Experienced contractors may have faster response times due to their familiarity with the process.
+
+__IssueYear and YearMonth:__
+Insight: These columns allow for temporal analysis of response times.
+Findings: Identify trends and seasonal variations in response times.
+
+__Geom and geo_point_2d:__
+Insight: Geospatial information can be used to visualize and analyze the distribution of response times.
+Findings: Allows for identifying geographic areas with longer response times and possible bottlenecks.
+
+__Conclusion__
+Combining these columns provides a comprehensive view of the factors influencing response times for building permits in Vancouver. By analyzing this data, it is possible to identify patterns, trends, and areas for improvement to optimize the permit issuance process.
+
+### Final Conclusions ###
+
+__Project Complexity:__ Higher value and more complex projects, such as new buildings, have significantly longer turnaround times due to the need for detailed reviews and multiple approvals.
+
+__Geographic Variability:__ Geographic location influences response times, with areas of high construction activity experiencing longer delays due to department workload.
+
+__Process Efficiency:__ Most permits are responded to quickly, indicating an efficient process, although outliers suggest the need for improvement in specific cases.
+
+__Applicant and Contractor Impact:__ Applicants and contractors with experience and familiarity with the permitting process tend to have faster response times, highlighting the importance of quality and accuracy in submitting applications.
 
 
 
