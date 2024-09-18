@@ -58,11 +58,23 @@ __Objective:__
 
 The following AWS services were utilized to manage, process, and analyze the data:
 
-S3: Used for storing the building permits dataset and results.
-Glue: Responsible for ETL (Extract, Transform, Load) processes to clean and prepare the data.
-CloudWatch: Monitored logs and tracked data pipeline performance.
-EC2: Hosted the computation environment for analysis.
-DataBrew: Automated data cleaning and transformation tasks, allowing easy preparation of datasets.
+**S3:**
+Stores raw and processed data. Used to store both original and transformed data.
+
+**AWS Glue DataBrew:**
+Visual tool for preparing and exploring data. It is ideal for exploratory analysis without writing code.
+
+**Amazon Athena:**
+Allows you to run SQL queries directly on data stored in Amazon S3, facilitating exploratory analysis of large volumes of data.
+
+**Amazon SageMaker:**
+Although primarily a tool for machine learning, you can also use SageMaker for advanced exploratory analysis using notebooks and visualizations.
+
+**Amazon QuickSight:**
+BI tool for creating dashboards and interactive visualizations.
+
+[AWS_Academy_Graduate___AWS_Academy_Cloud_Foundations_Badge20240917-8-sh7a3z.pdf](https://github.com/user-attachments/files/17036584/AWS_Academy_Graduate___AWS_Academy_Cloud_Foundations_Badge20240917-8-sh7a3z.pdf)
+
 Screenshots:
 
 Screenshot of S3 bucket setup.
