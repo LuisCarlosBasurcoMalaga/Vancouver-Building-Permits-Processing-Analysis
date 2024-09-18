@@ -71,6 +71,7 @@ Stores raw and processed data. Used to store both original and transformed data.
 
 ![bucket](https://github.com/user-attachments/assets/8d110700-67f4-4c1c-b3fc-8f2a4b2e6f93)
 
+![TotalStorageuse](https://github.com/user-attachments/assets/7c3ebd7c-9820-42a3-86fe-41d90e2aa36d)
 
 
 
